@@ -11,11 +11,6 @@ local Window = ColabDev.Utilities.UI:Window({
     local AimbotSession = CombatTab:Section({Name = "Aimbot",Side = "Left"})
     AimbotSession:Toggle({Name = "Enabled",Flag = "Aimbot/Enabled",Value = false})
 
-    -- local WeaponSession = CombatTab:Section({Name = "Weapon",Side = "Right"})
-    -- WeaponSession:Toggle({Name = "Enabled",Flag = "Weapon/Recoil/Enabled",Value = false})
-    -- WeaponSession:Slider({Name = "Bullet Drop",Flag = "Weapon/Recoil/BulletDrop",Min = 0,Max = 100,Value = 0,Unit = "%"})
-
-
     local VisualsTab = Window:Tab({Name = "Visuals"})
     local ESPSession = VisualsTab:Section({Name = "ESP",Side = "Left"})
     ESPSession:Toggle({Name = "Enabled",Flag = "Visuals/ESP/Enabled",Value = false})

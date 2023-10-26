@@ -1,7 +1,7 @@
 ColabDev = {}
 ColabDev.Config = {
     DevMode = {
-        Enable = false,
+        Enable = true,
         Source = "https://raw.githubusercontent.com/COLABDevx/roblox-script/main"
     }
 }

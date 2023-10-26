@@ -9,10 +9,6 @@ ColabDev.Config = {
             Ip = "http://192.168.1.120:9090",
             Port = 9090,
         }
-    },
-    Production = {
-        Source = "",
-        LogService = ""
     }
 }
 

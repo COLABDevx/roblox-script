@@ -86,9 +86,9 @@ if ColabDev.Config.DevMode.Enable then
             ColabDev.Utilities.Log("Success","Found Game "..Game.Name)
 
             game:GetService("StarterGui"):SetCore("SendNotification",{
-                Title = "Script Loading...", -- Required
-                Text = "Game Name : "..Game.Name., -- Required
-                Icon = "rbxassetid://1234567890" -- Optional
+                Title = "Script Loading...", 
+                Text = "Game Name : "..Game.Name, 
+                Icon = "rbxassetid://1234567890"
             })
             
             

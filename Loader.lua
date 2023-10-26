@@ -53,6 +53,28 @@ function ColabDev.Utilities.FixUpValue(fn,hook,gvar)
     end
 end
 
+function loadScript()
+    local Game = ColabDev.Utilities.FindGame()
+    if Game == nil then 
+        return game:GetService("StarterGui"):SetCore("SendNotification",{
+            Title = "Script Error...", 
+            Text = "Game PlaceId"..game.PlaceId.." Not Found", 
+            Icon = "rbxassetid://1234567890"
+        })
+    end
+            
+    ColabDev.Game = {Name = Game.Name}
+
+    game:GetService("StarterGui"):SetCore("SendNotification",{
+        Title = "Script Loading...", 
+        Text = "Game Name : "..Game.Name, 
+        Icon = "rbxassetid://1234567890"
+    })
+            
+            
+    loadstring(game:HttpGet(ColabDev.Config.DevMode.Source.."/"..Game.File..".lua"))()
+end
+
 if ColabDev.Config.DevMode.Enable then
 
     UserInputService.InputBegan:Connect(function(input, _gameProcessed)
@@ -66,30 +88,7 @@ if ColabDev.Config.DevMode.Enable then
         if KeyPress.R and KeyPress.LeftControl then
             
 
-            local Game = ColabDev.Utilities.FindGame()
-
-            if Game == nil then 
-                -- ColabDev.Utilities.Log("ERROR",)
-                return game:GetService("StarterGui"):SetCore("SendNotification",{
-                    Title = "Script Error...", 
-                    Text = "Game PlaceId"..game.PlaceId.." Not Found", 
-                    Icon = "rbxassetid://1234567890"
-                })
-            end
-            
-            ColabDev.Game = {Name = Game.Name}
-
-            -- ColabDev.Utilities.Log("Success","Found Game "..Game.Name)
-
-            game:GetService("StarterGui"):SetCore("SendNotification",{
-                Title = "Script Loading...", 
-                Text = "Game Name : "..Game.Name, 
-                Icon = "rbxassetid://1234567890"
-            })
-            
-            
-
-            loadstring(game:HttpGet(ColabDev.Config.DevMode.Source.Ip.."/"..Game.File..".lua"))()
+            loadScript()
         end
     end)
 

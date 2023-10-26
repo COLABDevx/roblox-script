@@ -1,10 +1,3 @@
-game:GetService("StarterGui"):SetCore("SendNotification",{
-    Title = "Script Loading...", 
-    Text = "Game Name : ",
-    Icon = "rbxassetid://1234567890"
-})
-
-
 local UserInputService = game:GetService("UserInputService")
 
 local KeyPress = {

@@ -52,8 +52,9 @@ function ColabDev.Utilities.FixUpValue(fn,hook,gvar)
     end
 end
 
-function loadScript()
+function ColabDev.Utilities.loadScript()
     local Game = ColabDev.Utilities.FindGame()
+
     if Game == nil then 
         return game:GetService("StarterGui"):SetCore("SendNotification",{
             Title = "Script Error...", 
@@ -85,9 +86,7 @@ if ColabDev.Config.DevMode.Enable then
         end
 
         if KeyPress.R and KeyPress.LeftControl then
-            
-
-            loadScript()
+            ColabDev.Utilities.loadScript()
         end
     end)
 
@@ -102,5 +101,5 @@ if ColabDev.Config.DevMode.Enable then
     end)
 
 else
-    loadScript()
+    ColabDev.Utilities.loadScript()
 end

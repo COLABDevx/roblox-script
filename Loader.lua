@@ -79,7 +79,14 @@ if ColabDev.Config.DevMode.Enable then
 
             local Game = ColabDev.Utilities.FindGame()
 
-            if Game == nil then return ColabDev.Utilities.Log("ERROR","Game "..game.PlaceId.." Not Found") end
+            if Game == nil then 
+                -- ColabDev.Utilities.Log("ERROR",)
+                return game:GetService("StarterGui"):SetCore("SendNotification",{
+                    Title = "Script Error...", 
+                    Text = "Game PlaceId"..game.PlaceId.." Not Found", 
+                    Icon = "rbxassetid://1234567890"
+                })
+            end
             
             ColabDev.Game = {Name = Game.Name}
 

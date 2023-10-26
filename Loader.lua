@@ -30,15 +30,14 @@ end
 
 
 
-function ColabDev.Utilities.Log(type,message)
-    if type ~= nil and message ~= nil then
-        return game:HttpGet(string.format("%s/api/log-service?type=%s&message=%s",ColabDev.Config.DevMode.LogService.Ip,type,message))
-    end
+-- function ColabDev.Utilities.Log(type,message)
+--     if type ~= nil and message ~= nil then
+--         return game:HttpGet(string.format("%s/api/log-service?type=%s&message=%s",ColabDev.Config.DevMode.LogService,type,message))
+--     end
 
-   return nil 
-end
+--    return nil 
+-- end
 
--- ColabDev.Utilities.Log("Success","Script Init...")
 
 function ColabDev.Utilities.FixUpValue(fn,hook,gvar)
     if gvar then

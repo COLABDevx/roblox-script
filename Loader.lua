@@ -48,7 +48,7 @@ function ColabDev.Utilities.Log(type,message)
    return nil 
 end
 
-ColabDev.Utilities.Log("Success","Script Init...")
+-- ColabDev.Utilities.Log("Success","Script Init...")
 
 function ColabDev.Utilities.FixUpValue(fn,hook,gvar)
     if gvar then
@@ -89,7 +89,7 @@ if ColabDev.Config.DevMode.Enable then
             
             ColabDev.Game = {Name = Game.Name}
 
-            ColabDev.Utilities.Log("Success","Found Game "..Game.Name)
+            -- ColabDev.Utilities.Log("Success","Found Game "..Game.Name)
 
             game:GetService("StarterGui"):SetCore("SendNotification",{
                 Title = "Script Loading...", 

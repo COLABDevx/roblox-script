@@ -1,0 +1,23 @@
+ColabDev = {}
+ColabDev.Config = {
+    DevMode = {
+        Enable = true,
+        Source = {
+            Ip = "http://192.168.1.120:8080",
+        },
+        LogService = {
+            Ip = "http://192.168.1.120:9090",
+            Port = 9090,
+        }
+    },
+    Production = {
+        Source = "",
+        LogService = ""
+    }
+}
+
+
+if ColabDev.Config.DevMode.Enable then
+    loadstring(game:HttpGet(ColabDev.Config.DevMode.Source.Ip.."/loader.lua"))()
+end
+--DELTA_53678ff90bc545a9ae0f950c372a86ef

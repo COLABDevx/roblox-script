@@ -3,7 +3,7 @@ ColabDev.Config = {
     DevMode = {
         Enable = true,
         Source = {
-            Ip = "http://192.168.1.120:8080",
+            Ip = "https://raw.githubusercontent.com/COLABDevx/roblox-script/main",
         },
         LogService = {
             Ip = "http://192.168.1.120:9090",

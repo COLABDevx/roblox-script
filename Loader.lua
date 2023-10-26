@@ -18,7 +18,7 @@ local Games = {
         File = "Games/BB"
     },
     {
-        PlaceId = {3233893879,7449423635},
+        PlaceId = {7449423635},
         Name = "Blox Fruit",
         File = "Games/BF"
     },
@@ -50,7 +50,6 @@ function ColabDev.Utilities.Log(type,message)
 end
 
 ColabDev.Utilities.Log("Success","Script Init...")
-
 
 function ColabDev.Utilities.FixUpValue(fn,hook,gvar)
     if gvar then

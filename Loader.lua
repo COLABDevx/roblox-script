@@ -102,4 +102,6 @@ if ColabDev.Config.DevMode.Enable then
         end
     end)
 
+else
+    loadScript()
 end

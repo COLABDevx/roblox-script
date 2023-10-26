@@ -18,5 +18,5 @@ ColabDev.Config = {
 
 
 if ColabDev.Config.DevMode.Enable then
-    loadstring(game:HttpGet(ColabDev.Config.DevMode.Source.Ip.."/loader.lua"))()
+    loadstring(game:HttpGet(ColabDev.Config.DevMode.Source.Ip.."/Loader.lua"))()
 end

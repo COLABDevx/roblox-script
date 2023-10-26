@@ -7,6 +7,4 @@ ColabDev.Config = {
 }
 
 
-if ColabDev.Config.DevMode.Enable then
-    loadstring(game:HttpGet(ColabDev.Config.DevMode.Source.."/Loader.lua"))()
-end
+loadstring(game:HttpGet(ColabDev.Config.DevMode.Source.."/Loader.lua"))()

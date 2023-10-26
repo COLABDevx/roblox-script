@@ -1,6 +1,6 @@
 game:GetService("StarterGui"):SetCore("SendNotification",{
     Title = "Script Loading...", 
-    Text = "Game Name : " 
+    Text = "Game Name : ",
     Icon = "rbxassetid://1234567890"
 })
 

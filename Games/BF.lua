@@ -1,4 +1,4 @@
-ColabDev.Utilities.UI = loadstring(game:HttpGet(ColabDev.Config.DevMode.Source.Ip.."/Utilities/UI.lua"))()
+ColabDev.Utilities.UI = loadstring(game:HttpGet(ColabDev.Config.DevMode.Source.."/Utilities/UI.lua"))()
 local Players = game.Players
 
 local Window = ColabDev.Utilities.UI:Window({

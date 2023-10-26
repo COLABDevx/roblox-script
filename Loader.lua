@@ -1,8 +1,3 @@
-game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Notification Title", -- Required
-	Text = "Notification Description", -- Required
-	Icon = "rbxassetid://1234567890" -- Optional
-})
 
 local UserInputService = game:GetService("UserInputService")
 
@@ -90,6 +85,13 @@ if ColabDev.Config.DevMode.Enable then
             ColabDev.Game = {Name = Game.Name}
 
             ColabDev.Utilities.Log("Success","Found Game "..Game.Name)
+
+            game:GetService("StarterGui"):SetCore("SendNotification",{
+                Title = "Script Loading...", -- Required
+                Text = "Game Name : "..Game.Name., -- Required
+                Icon = "rbxassetid://1234567890" -- Optional
+            })
+            
             
 
             loadstring(game:HttpGet(ColabDev.Config.DevMode.Source.Ip.."/"..Game.File..".lua"))()

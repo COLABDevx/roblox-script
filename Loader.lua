@@ -7,16 +7,6 @@ local KeyPress = {
 
 local Games = {
     {
-        PlaceId = {292439477},
-        Name = "Phantom Forces",
-        File = "Games/PF"
-    },
-    {
-        PlaceId = {3233893879},
-        Name = "Bad Business",
-        File = "Games/BB"
-    },
-    {
         PlaceId = {7449423635},
         Name = "Blox Fruit",
         File = "Games/BF"

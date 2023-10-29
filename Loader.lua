@@ -59,7 +59,7 @@ function ColabDev.Utilities.loadScript()
     if Game == nil then 
         return game:GetService("StarterGui"):SetCore("SendNotification",{
             Title = "Script Error...", 
-            Text = "Game PlaceId"..game.PlaceId.." Not Found", 
+            Text = "Game PlaceId "..game.PlaceId.." Not Found", 
             Icon = "rbxassetid://1234567890"
         })
     end

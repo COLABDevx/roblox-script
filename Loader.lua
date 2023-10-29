@@ -2,7 +2,8 @@ local UserInputService = game:GetService("UserInputService")
 
 local KeyPress = {
     LeftControl = false,
-    R = false
+    R = false,
+    D = false
 }
 
 local Games = {
@@ -85,8 +86,16 @@ if ColabDev.Config.DevMode.Enable then
             KeyPress.R = true
         end
 
+        if input.KeyCode == Enum.KeyCode.D then
+            KeyPress.D = false
+        end
+
         if KeyPress.R and KeyPress.LeftControl then
             ColabDev.Utilities.loadScript()
+        end
+
+        if KeyPress.D and KeyPress.LeftControl then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
         end
     end)
 
@@ -97,6 +106,10 @@ if ColabDev.Config.DevMode.Enable then
 
         if input.KeyCode == Enum.KeyCode.R then
             KeyPress.R = false
+        end
+
+        if input.KeyCode == Enum.KeyCode.D then
+            KeyPress.D = false
         end
     end)
 

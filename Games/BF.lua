@@ -1,14 +1,7 @@
 local LocalPlayer = game.Players.LocalPlayer
 
-local function GetPlayerData(Type)
-    if Type = "Level" then
-        print(LocalPlayer.Data)
-    end
-end
 
-GetPlayerData("Level")
-
-local Config = {
+local Configs = {
     ["Enemies"] = {
         ["Bandit"] = {
             ["Level"] = 5,
@@ -18,6 +11,7 @@ local Config = {
     },
     ["NPCS"] = {
         ["Bandit Quest Giver"] = {
+            ["Level"] = 0,
             ["Sea"] = 1,
             ["IsQuest"] = true,
             ["QuestEnemyType"] = "prirate",
@@ -27,10 +21,41 @@ local Config = {
     ["Quests"] = {
         ["Bandits"] = {
             ["NPC"] = "Bandit",
-            ["minLevel"] = 0,
+            ["Level"] = 0,
         }
     }
 }
+
+function GetPlayerData(Type)
+    if Type == "Level" then
+        return LocalPlayer.Data.Level.Value
+    end
+end
+
+function GetCurrentPlayerQuestNpc(PlayerLevel)
+    for _,npc in pairs(Configs["NPCS"]) do
+        if PlayerLevel >= npc.Level then
+            return _,npc
+        end
+    end
+
+    return nil
+end
+
+function GetCurrentPlayerQuest(PlayerLevel)
+    -- local GetNPC = Configs["NPCS"][""]
+    local Name,Data = GetCurrentPlayerQuestNpc(PlayerLevel)
+
+    local NPC_HumanoidRootPart = workspace.NPCs[Name].HumanoidRootPart
+
+    print(NPC_HumanoidRootPart.CFrame)
+
+    -- print(workspace["NPCs"]:GetChildren()[Data])
+end
+
+-- local PlayerLevel = GetPlayerData("Level")
+GetCurrentPlayerQuest(1)
+
 
 local function WalkOnWater(SizeY)
     local WaterBasePlane = workspace.Map["WaterBase-Plane"]

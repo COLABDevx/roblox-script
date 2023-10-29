@@ -8,7 +8,7 @@ local KeyPress = {
 
 local Games = {
     {
-        PlaceId = {7449423635},
+        PlaceId = {2753915549,7449423635},
         Name = "Blox Fruit",
         File = "Games/BF"
     },

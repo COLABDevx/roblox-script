@@ -87,7 +87,7 @@ if ColabDev.Config.DevMode.Enable then
         end
 
         if input.KeyCode == Enum.KeyCode.D then
-            KeyPress.D = false
+            KeyPress.D = true
         end
 
         if KeyPress.R and KeyPress.LeftControl then

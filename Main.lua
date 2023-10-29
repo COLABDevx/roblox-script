@@ -2,7 +2,7 @@ ColabDev = {}
 ColabDev.Config = {
     DevMode = {
         Enable = true,
-        Source = "https://raw.githubusercontent.com/COLABDevx/roblox-script/main"
+        Source = "https://ce50-2405-9800-b960-c872-c06-83b6-ba3c-11ea.ngrok-free.app"
     }
 }
 

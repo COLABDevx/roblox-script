@@ -2,7 +2,7 @@ ColabDev = {}
 ColabDev.Config = {
     DevMode = {
         Enable = true,
-        Source = "https://ce50-2405-9800-b960-c872-c06-83b6-ba3c-11ea.ngrok-free.app"
+        Source = "https://ef61-2405-9800-b960-c872-400-885e-53b6-4fa1.ngrok-free.app/"
     }
 }
 

@@ -1,6 +1,6 @@
 local LocalPlayer = game.Players.LocalPlayer
 local TweenService = game:GetService("TweenService")
-local Character = LocalPlayer.Character
+local Character = LocalPlayer.Character or Player.CharacterAdded:Wait()
 local HumanoidRootPart = Character.HumanoidRootPart
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -14,7 +14,22 @@ local Configs = {
             ["CFrame"] = CFrame.new(1110.41284, 16.2993984, 1450.15393, 0.626955211, -5.22833687e-08, -0.779055297, -1.25271375e-08, 1, -7.71926238e-08, 0.779055297, 5.81556492e-08, 0.626955211)
         }
     },
+    ["Shop"] = {
+        ["Remotes"] = {
+            ["EvilFruitShop"] = function()
+                local args = {
+                    [1] = "GetFruits",
+                    [2] = false
+                }
 
+            
+                
+                local data = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))                
+                
+                -- print(ColabDev.Utilities.DumpTable(data))
+            end
+        }
+    },
     ["Enemies"] = {
         ["Bandit"] = {
             ["Level"] = 5,
@@ -58,6 +73,8 @@ local Configs = {
         }
     }
 }
+
+-- Configs["Shop"]["Remotes"]:EvilFruitShop()
 
 local Trades = {}
 
@@ -123,10 +140,11 @@ function FindNearEenemy(Name)
 
             local enemyRootPart = enemy:FindFirstChild("HumanoidRootPart")
             -- print(enemyRootPart)
-            enemyRootPart.Size = Vector3.new(70,70,70)
+            enemyRootPart.Anchored = true
+            enemyRootPart.Size = Vector3.new(50,50,50)
             enemyRootPart.CanCollide = false
 
-            if enemyRootPart then
+            if enemyRootPart and enemy.Humanoid.Health > 0 then
                 local distance = (enemyRootPart.CFrame.Position - HumanoidRootPart.Position).Magnitude
                 if distance < minDistance then
                     minDistance = distance
@@ -140,28 +158,34 @@ function FindNearEenemy(Name)
 end
 
 -- local PlayerLevel = GetPlayerData("Level")
-local Data = GetCurrentPlayerNPCQuest(1)
+local function AutoFarmLevel()
+    local Data = GetCurrentPlayerNPCQuest(1)
 
-HumanoidRootPart.Anchored = false
-Tween.Current = Tween.ToCFrame(Data["CFrame"])
-Tween.Current:Play()
-Tween.Current.Completed:Connect(function()
-    local QuestRemoteArgs = Configs["Quests"]["Bandits"]["QuestRemoteArgs"]
-    Configs["Quests"]["_Remotes"].GetQuest(QuestRemoteArgs)
+    HumanoidRootPart.Anchored = false
+    Tween.Current = Tween.ToCFrame(Data["CFrame"])
+    Tween.Current:Play()
+    Tween.Current.Completed:Connect(function()
+        local QuestRemoteArgs = Configs["Quests"]["Bandits"]["QuestRemoteArgs"]
+        Configs["Quests"]["_Remotes"].GetQuest(QuestRemoteArgs)
 
-    local target = FindNearEenemy(Configs["Quests"]["Bandits"]["EnemyName"])
-    Configs.Quests._Attack_Emnemy = target
-    
-    if target ~= nil then
-        Tween.Current = Tween.ToCFrame(target.HumanoidRootPart.CFrame * CFrame.new(Vector3.new(0, 15, 0)))
-        Tween.Current:Play()
+        local target = FindNearEenemy(Configs["Quests"]["Bandits"]["EnemyName"])
+        Configs.Quests._Attack_Emnemy = target
+        
+        if target ~= nil then
+            Tween.Current = Tween.ToCFrame(target.HumanoidRootPart.CFrame * CFrame.new(Vector3.new(0, 15, 0)))
+            Tween.Current:Play()
 
-        Tween.Current.Completed:Connect(function ()
-            Configs["Quests"]["_IsAttack"] = true
-            -- HumanoidRootPart.Anchored = true
-        end)
-    end
-end)
+            Tween.Current.Completed:Connect(function ()
+                Configs["Quests"]["_IsAttack"] = true
+                -- HumanoidRootPart.Anchored = true
+            end)
+        end
+    end)
+end
+
+local function CheckQuestGUIActive()
+    return game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible
+end
 
 local function WalkOnWater(SizeY)
     local WaterBasePlane = workspace.Map["WaterBase-Plane"]
@@ -170,17 +194,33 @@ end
 
 WalkOnWater(113)
 
-
+-- AutoFarmLevel()
 
 Trades.Main = RunService.Stepped:Connect(function ()
-    if(Configs["Quests"]["_IsAttack"]) then
-        -- HumanoidRootPart.CFrame = Configs["Quests"]["_Attack_Emnemy"].HumanoidRootPart.CFrame * CFrame.new(Vector3.new(0,40,0))
+    if(Configs["Quests"]["_IsAttack"]) and Configs["Quests"]["_Attack_Emnemy"] ~= nil and Configs["Quests"]["_Attack_Emnemy"]:FindFirstChild("HumanoidRootPart") then
+        if Configs["Quests"]["_Attack_Emnemy"].Humanoid.Health > 0 then
+            HumanoidRootPart.CFrame = Configs["Quests"]["_Attack_Emnemy"].HumanoidRootPart.CFrame * CFrame.new(Vector3.new(0,30,0))
+        end
     end
 
-    -- print(workspace.Enemies[Configs["Quests"]["_Attack_Emnemy"]])
-
-    if Configs["Quests"]["_Attack_Emnemy"] == nil then
-        -- print("die")
+    if  Configs["Quests"]["_Attack_Emnemy"] ~= nil and Configs["Quests"]["_Attack_Emnemy"].Humanoid.Health <= 0 then
+        local target = FindNearEenemy(Configs["Quests"]["Bandits"]["EnemyName"])
+        Configs.Quests._Attack_Emnemy = target
+        
+        if target ~= nil then
+            Tween.Current = Tween.ToCFrame(target.HumanoidRootPart.CFrame * CFrame.new(Vector3.new(0, 15, 0)))
+            Tween.Current:Play()
+    
+            Tween.Current.Completed:Connect(function ()
+                
+               if CheckQuestGUIActive() == false then
+                Configs["Quests"]["_IsAttack"] = false
+                AutoFarmLevel()
+               else
+                Configs["Quests"]["_IsAttack"] = true
+               end
+            end)
+        end
     end
 end)
 

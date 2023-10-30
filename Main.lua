@@ -7,4 +7,4 @@ ColabDev.Config = {
 }
 
 
-loadstring(game:HttpGet(ColabDev.Config.DevMode.Source.."/Loader.lua"))()
+loadstring(game:HttpGet(ColabDev.Config.DevMode.Source.."/Loader.lua"))()ty

@@ -194,7 +194,7 @@ end
 
 WalkOnWater(113)
 
--- AutoFarmLevel()
+AutoFarmLevel()
 
 Trades.Main = RunService.Stepped:Connect(function ()
     if(Configs["Quests"]["_IsAttack"]) and Configs["Quests"]["_Attack_Emnemy"] ~= nil and Configs["Quests"]["_Attack_Emnemy"]:FindFirstChild("HumanoidRootPart") then

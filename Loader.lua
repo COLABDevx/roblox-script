@@ -16,6 +16,7 @@ local Games = {
 }
 
 ColabDev.Utilities = {}
+ColabDev.Utilities.UI = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 
 function ColabDev.Utilities.FindGame()
     for i, g in ipairs(Games) do

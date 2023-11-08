@@ -1,5 +1,11 @@
 local UserInputService = game:GetService("UserInputService")
 
+return game:GetService("StarterGui"):SetCore("SendNotification",{
+    Title = "Script", 
+    Text = "Loading...", 
+    Icon = "rbxassetid://1234567890"
+})
+
 local KeyPress = {
     LeftControl = false,
     R = false,

@@ -208,8 +208,6 @@ local function GotoSailBoatPosition()
     end)
 end
 
--- AutoSeaBeast()
-
 local function WalkOnWater(SizeY)
     local WaterBasePlane = workspace.Map["WaterBase-Plane"]
     workspace.Map["WaterBase-Plane"].Size = Vector3.new(WaterBasePlane.Size.X, SizeY, WaterBasePlane.Size.Z)
@@ -246,10 +244,7 @@ Trades.Main = RunService.Stepped:Connect(function ()
     end
 end)
 
-local KeyPress = {
-    LeftControl = false,
-    R = false,
-}
+local KeyPress = { LeftControl = false, R = false }
 
 UserInputService.InputBegan:Connect(function(input, _gameProcessed)
     if input.KeyCode  == Enum.KeyCode.LeftControl then
@@ -282,7 +277,7 @@ local Window = Fluent:CreateWindow({
     Title = "COLABDev 1.0.0",
     SubTitle = "Blox Fruit",
     TabWidth = 160,
-    Size = UDim2.fromOffset(580, 460),
+    Size = UDim2.fromOffset(580, 350),
     Acrylic = true, 
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.End 
@@ -293,10 +288,7 @@ local Tabs = {
     SeaBeast = Window:AddTab({ Title = "Sea Beast & Ship", Icon = "sailboat" }),
 }
 
-local Options = Fluent.Options
-
-do
-
+local Options = Fluent.Options do
     Tabs.Main:AddParagraph({
         Title = "Paragraph",
         Content = "This is a paragraph.\nSecond line!"
@@ -321,8 +313,10 @@ do
 
     Tabs.SeaBeast:AddToggle("AutoSailBoat", {Title = "Auto Sail Boat", Default = false }):OnChanged(function(Value)
         if (Value) then
-            Configs.Boats.Buy("Guardian")
+            -- Configs.Boats.Buy("Guardian")
             GotoSailBoatPosition()
+        else
+            -- Tween.StopTween()
         end
     end)
     

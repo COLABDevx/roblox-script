@@ -18,7 +18,11 @@ local Games = {
         Name = "Blox Fruit",
         File = "Games/BF"
     },
-    
+    {
+        PlaceId = {14918509670},
+        Name = "Anime ",
+        File = "Games/AA"
+    }
 }
 
 ColabDev.Utilities = {}
@@ -114,9 +118,9 @@ if ColabDev.Config.DevMode.Enable then
             ColabDev.Utilities.loadScript()
         end
 
-        if KeyPress.D and KeyPress.LeftControl then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
-        end
+        -- if KeyPress.D and KeyPress.LeftControl then
+        --     loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+        -- end
     end)
 
     UserInputService.InputEnded:Connect(function(input, _gameProcessed)

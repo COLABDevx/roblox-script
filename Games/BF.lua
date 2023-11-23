@@ -6,7 +6,7 @@ local Character = LocalPlayer.Character or Player.CharacterAdded:Wait()
 local HumanoidRootPart = Character.HumanoidRootPart
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
-
+local VirtualInputManager = game:GetService("VirtualInputManager")
 
 local Configs = {
     ["Islands"] = {
@@ -85,6 +85,21 @@ local Configs = {
         ["Lists"] = {}
     }
 }
+
+local function JustPressedKey(Key)
+    VirtualInputManager:SendKeyEvent(true,Key,false,game) 
+    VirtualInputManager:SendKeyEvent(false,Key,false,game) 
+end
+
+local function HoldPressedKey(Key,Time)
+    if Time == nil then Time = 0.1 end
+
+    VirtualInputManager:SendKeyEvent(true,Key,false,game) 
+    wait(Time)
+    VirtualInputManager:SendKeyEvent(false,Key,false,game) 
+end
+
+JustPressedKey(Enum.KeyCode.Z)
 
 -- Configs["Shop"]["Remotes"]:EvilFruitShop()
 
@@ -217,6 +232,10 @@ end
 -- AutoFarmLevel()
 
 Trades.Main = RunService.Stepped:Connect(function ()
+
+    -- VirtualInputManager:SendMouseButtonEvent(0,0,0,true,game,0)
+    -- VirtualInputManager:SendMouseButtonEvent(0,0,0,false,game,0)
+
     if(Configs["Quests"]["_IsAttack"]) and Configs["Quests"]["_Attack_Emnemy"] ~= nil and Configs["Quests"]["_Attack_Emnemy"]:FindFirstChild("HumanoidRootPart") then
         if Configs["Quests"]["_Attack_Emnemy"].Humanoid.Health > 0 then
             HumanoidRootPart.CFrame = Configs["Quests"]["_Attack_Emnemy"].HumanoidRootPart.CFrame * CFrame.new(Vector3.new(0,30,0))
